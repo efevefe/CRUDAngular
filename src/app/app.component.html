@@ -1,0 +1,65 @@
+<div>
+  <div style="width: 65%; float: left;">
+    <div class="card mt-4" style="width: 60%; float: left;">
+      <div class="card-body">
+        <div class="card-title">Ingrese un nuevo Usuario</div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Ingrese un Nombre"
+            class="form-control"
+            [(ngModel)]="selectedUser.name"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Ingrese un Telefono"
+            class="form-control"
+            [(ngModel)]="selectedUser.phone"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Ingrese un Email"
+            class="form-control"
+            [(ngModel)]="selectedUser.email"
+          />
+        </div>
+      </div>
+      <div *ngIf="selectedUser.id === 0">
+        <button (click)="add()" class="btn btn-primary btn-block">Nuevo</button>
+      </div>
+      <div *ngIf="selectedUser.id !== 0">
+        <button
+          (click)="saveClick()"
+          class="btn btn-success btn-block"
+          style="float: right;"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="width: 35%; float: right;">
+  <li class="list-group" *ngFor="let user of users">
+    <div style="width: 90%; float: left;">
+      <h4>Nombre: {{ user.name }}</h4>
+      <h5 *ngIf="user.phone !== ''">Telefono: {{ user.phone }}</h5>
+      <h5 *ngIf="user.email !== ''">Email: {{ user.email }}</h5>
+    </div>
+    <div>
+      <div style="width: 50%; float: right;">
+        <button (click)="deleteUser(user)" class="btn btn-danger">
+          Eliminar
+        </button>
+      </div>
+      <div style="float: left;">
+        <button (click)="editUser(user)" class="btn btn-warning">Editar</button>
+      </div>
+    </div>
+    <hr width="100%" />
+  </li>
+</div>
